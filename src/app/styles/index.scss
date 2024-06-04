@@ -1,1 +1,21 @@
 @import 'reset-css';
+
+body {
+  min-height: 100vh;
+
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+button {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.wrapper {
+  max-width: 1440px;
+  margin: auto;
+  padding: 0 20px;
+}
