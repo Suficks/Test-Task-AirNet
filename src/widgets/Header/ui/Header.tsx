@@ -1,7 +1,7 @@
 import { memo, useState } from 'react';
 import classNames from 'classnames';
 
-import { monthsImagesData } from '@/shared/Data/MonthsImagesData';
+import { monthsImagesData } from '@/shared/const/MonthsImagesData';
 import { Text } from '@/shared/ui/Text/Text';
 
 import cls from './Header.module.scss';
