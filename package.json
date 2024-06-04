@@ -1,0 +1,40 @@
+{
+  "name": "test-task-airnet",
+  "version": "1.0.0",
+  "description": "This is solution for Test task Frontend developer at AirNet",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "start": "vite --open",
+    "build": "vite build",
+    "prettier": "npx prettier --write \"**/*.{ts,tsx}\"",
+    "lint": "eslint \"**/*.{ts,tsx}\""
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-router": "^5.1.20",
+    "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/parser": "^7.11.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "css-loader": "^7.1.2",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.5",
+    "sass": "^1.77.4",
+    "sass-loader": "^14.2.1",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.12"
+  },
+  "dependencies": {
+    "classnames": "^2.5.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.1",
+    "reset-css": "^5.0.2"
+  }
+}
