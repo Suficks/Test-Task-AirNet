@@ -13,7 +13,7 @@ export const WeekDays = memo(({ className }: WeekDaysProps) => {
   return (
     <div className={classNames(cls.weekDays, className)}>
       {weekDaysList.map(item => (
-        <div className={cls.day}>{item}</div>
+        <div key={item} className={cls.day}>{item}</div>
       ))}
     </div>
   )
