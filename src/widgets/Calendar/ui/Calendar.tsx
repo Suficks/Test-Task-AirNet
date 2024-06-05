@@ -6,6 +6,7 @@ import { Text } from '@/shared/ui/Text/Text';
 import cls from './Calendar.module.scss';
 import { useCalendar } from '../hooks/useCalendar';
 import { monthsImagesData } from '@/shared/const/MonthsImagesData';
+import { checkDateIsEqual, checkIsToday } from '@/shared/utils/Date';
 
 interface CalendarProps {
   className?: string;
@@ -48,21 +49,37 @@ export const Calendar = memo((props: CalendarProps) => {
       <section>
         <div className={cls.weekNames}>
           {state.weekDaysNames.map((weeDayName) => (
-            <div
+            <Text
               key={weeDayName.dayShort}
-              className={cls.weekDay}>
-              {weeDayName.dayShort}
-            </div>
+              className={cls.weekDay}
+              text={weeDayName.dayShort}
+              bold
+            />
           ))}
         </div>
         <div className={cls.calendar}>
-          {state.calendarDays.map((calendarDay) => (
-            <div
-              key={`${calendarDay.dayNumber} - ${calendarDay.monthIndex}`}
-              className={cls.day}>
-              {calendarDay.dayNumber}
-            </div>
-          ))}
+          {state.calendarDays.map((calendarDay) => {
+            const isToday = checkIsToday(calendarDay.date);
+            const isSelectedDay = checkDateIsEqual(calendarDay.date, state.selectedDate.date)
+            const isAdditionalDay = calendarDay.monthIndex !== state.selectedMonth.monthIndex
+            const additionalClasses = {
+              [cls.today]: isToday,
+              [cls.selected]: isSelectedDay,
+              [cls.additional]: isAdditionalDay
+            }
+            return (
+              <div
+                key={`${calendarDay.dayNumber} - ${calendarDay.monthIndex}`}
+                onClick={() => {
+                  selectDate(calendarDay.date)
+                }}
+                className={classNames(cls.day, additionalClasses)}
+              >
+                {calendarDay.dayNumber}
+              </div>
+            )
+          }
+          )}
         </div>
       </section>
     </>
