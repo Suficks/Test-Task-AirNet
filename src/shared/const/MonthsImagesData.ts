@@ -1,10 +1,10 @@
 import Jan from '@/shared/assets/images/Jan.png'
 import Feb from '@/shared/assets/images/Feb.png'
-import March from '@/shared/assets/images/March.png'
-import April from '@/shared/assets/images/April.png'
+import Mar from '@/shared/assets/images/March.png'
+import Apr from '@/shared/assets/images/April.png'
 import May from '@/shared/assets/images/May.png'
-import June from '@/shared/assets/images/June.png'
-import July from '@/shared/assets/images/July.png'
+import Jun from '@/shared/assets/images/June.png'
+import Jul from '@/shared/assets/images/July.png'
 import Aug from '@/shared/assets/images/Aug.png'
 import Sep from '@/shared/assets/images/Sep.png'
 import Nov from '@/shared/assets/images/Nov.png'
@@ -27,11 +27,11 @@ export const monthsImagesData: MonthsImagesData[] = [
   },
   {
     month: 'Mar',
-    image: March
+    image: Mar
   },
   {
     month: 'Apr',
-    image: April
+    image: Apr
   },
   {
     month: 'May',
@@ -39,11 +39,11 @@ export const monthsImagesData: MonthsImagesData[] = [
   },
   {
     month: 'Jun',
-    image: June
+    image: Jun
   },
   {
     month: 'Jul',
-    image: July
+    image: Jul
   },
   {
     month: 'Aug',
