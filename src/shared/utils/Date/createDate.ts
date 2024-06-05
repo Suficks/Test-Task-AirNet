@@ -1,25 +1,25 @@
-import { getWeekNumber } from "./getWeekNumber";
+import { getWeekNumber } from './getWeekNumber';
 
 interface CreateDateParams {
-  locale?: string
-  date?: Date
+  locale?: string;
+  date?: Date;
 }
 
 export const createDate = (params?: CreateDateParams) => {
-  const locale = params?.locale ?? 'en-us'
+  const locale = params?.locale ?? 'en-us';
   const date = params?.date ?? new Date();
 
   const dayNumber = date.getDate();
-  const day = date.toLocaleDateString(locale, { weekday: 'long' })
-  const dayNumberInWeek = date.getDay() + 1
-  const dayShort = date.toLocaleDateString(locale, { weekday: 'short' })
-  const year = date.getFullYear()
-  const yearShort = date.toLocaleDateString(locale, { year: '2-digit' })
-  const month = date.toLocaleDateString(locale, { month: 'long' })
-  const monthShort = date.toLocaleDateString(locale, { month: 'short' })
-  const monthNumber = date.getMonth() + 1
-  const monthIndex = date.getMonth()
-  const timestamp = date.getTime()
+  const day = date.toLocaleDateString(locale, { weekday: 'long' });
+  const dayNumberInWeek = date.getDay() + 1;
+  const dayShort = date.toLocaleDateString(locale, { weekday: 'short' });
+  const year = date.getFullYear();
+  const yearShort = date.toLocaleDateString(locale, { year: '2-digit' });
+  const month = date.toLocaleDateString(locale, { month: 'long' });
+  const monthShort = date.toLocaleDateString(locale, { month: 'short' });
+  const monthNumber = date.getMonth() + 1;
+  const monthIndex = date.getMonth();
+  const timestamp = date.getTime();
   const week = getWeekNumber(date);
 
   return {
@@ -36,5 +36,5 @@ export const createDate = (params?: CreateDateParams) => {
     monthIndex,
     timestamp,
     week,
-  }
-}
+  };
+};
