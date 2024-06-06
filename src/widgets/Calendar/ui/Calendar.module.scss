@@ -55,7 +55,12 @@
 }
 
 .day {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  
   height: 100px;
+
   padding: 9px 0 0 14px;
   margin: 0 -1px -1px 0;
 
@@ -81,7 +86,7 @@
 
 .today {
   background-color: #c1ffc6;
-  z-index: 2;
+  
   &:hover {
     background-color: #c1ffc6;
   }

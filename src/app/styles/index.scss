@@ -9,9 +9,23 @@ body {
 
 button {
   background: transparent;
+  padding: 0;
   border: none;
   outline: none;
+  color: #666666;
   cursor: pointer;
+}
+
+input {
+  color: #666666;
+  outline: none;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: #5ebc66;
 }
 
 .wrapper {

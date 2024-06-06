@@ -6,6 +6,7 @@ import { useCalendar } from '../hooks/useCalendar';
 import { monthsImagesData } from '@/shared/const/MonthsImagesData';
 import { CalendarDay, checkDateIsEqual, checkIsToday, getDayNumberInYear } from '@/shared/utils/Date';
 import { Tasks } from '@/widgets/Tasks/ui/Tasks';
+import { Modal } from '@/widgets/Modal';
 
 import cls from './Calendar.module.scss';
 
@@ -45,6 +46,10 @@ export const Calendar = memo((props: CalendarProps) => {
     }
   }
 
+  const onModalOpen = () => {
+    setIsModalOpen(true)
+  }
+
   return (
     <>
       <section className={classNames(cls.Header, className)}>
@@ -79,6 +84,7 @@ export const Calendar = memo((props: CalendarProps) => {
               <div
                 key={`${calendarDay.dayNumber} - ${calendarDay.monthIndex}`}
                 onClick={() => {
+                  onModalOpen()
                   functions.setSelectedDate(calendarDay)
                   selectDate(calendarDay.date)
                 }}
@@ -86,12 +92,16 @@ export const Calendar = memo((props: CalendarProps) => {
               >
                 {calendarDay.dayNumber}
                 <Tasks date={calendarDay.date} />
-                {/* {<button className={openTasks} onClick={ } />} */}
               </div>
             )
           }
           )}
         </div>
+        <Modal
+          isOpen={isModalOpen}
+          date={state.selectedDate.date}
+          onClose={setIsModalOpen}
+        />
       </section>
     </>
   );
