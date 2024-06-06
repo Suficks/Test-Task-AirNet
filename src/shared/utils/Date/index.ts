@@ -8,3 +8,4 @@ export * from './getWeekDaysNames';
 export * from './formatDate';
 export * from './checkIsToday';
 export * from './checkDateIsEqual';
+export * from './getDayNumberInYear';

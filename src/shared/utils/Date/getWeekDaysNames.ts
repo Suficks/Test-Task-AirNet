@@ -1,3 +1,4 @@
+import { DAYS_IN_WEEK } from '@/shared/const/dates';
 import { createDate } from './createDate';
 
 export const getWeekDaysNames = (
@@ -7,7 +8,7 @@ export const getWeekDaysNames = (
   const weekDaysNames: {
     day: ReturnType<typeof createDate>['day'];
     dayShort: ReturnType<typeof createDate>['dayShort'];
-  }[] = Array.from({ length: 7 });
+  }[] = Array.from({ length: DAYS_IN_WEEK });
 
   const d = new Date();
 

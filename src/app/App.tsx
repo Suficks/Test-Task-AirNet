@@ -4,10 +4,6 @@ import { Calendar } from '@/widgets/Calendar';
 
 import './styles/index.scss';
 
-interface AppProps {
-  className?: string;
-}
-
 export const App = () => {
   const [selectedDate, setSelectedDay] = useState(new Date());
 
@@ -16,6 +12,7 @@ export const App = () => {
       <Calendar
         selectedDate={selectedDate}
         selectDate={(date) => setSelectedDay(date)}
+        locale='en-us'
       />
     </main>
   );

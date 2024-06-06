@@ -2,11 +2,11 @@ import { memo } from 'react';
 import classNames from 'classnames';
 
 import { Text } from '@/shared/ui/Text/Text';
-
-import cls from './Calendar.module.scss';
 import { useCalendar } from '../hooks/useCalendar';
 import { monthsImagesData } from '@/shared/const/MonthsImagesData';
-import { checkDateIsEqual, checkIsToday } from '@/shared/utils/Date';
+import { checkDateIsEqual, checkIsToday, getDayNumberInYear } from '@/shared/utils/Date';
+
+import cls from './Calendar.module.scss';
 
 interface CalendarProps {
   className?: string;
@@ -25,7 +25,7 @@ export const Calendar = memo((props: CalendarProps) => {
     firstWeekDay = 2,
   } = props;
 
-  const { state } = useCalendar({ firstWeekDay, locale, selectedDate });
+  const { state, functions } = useCalendar({ firstWeekDay, locale, selectedDate });
   const currentMonth =
     state.monthsNames[state.selectedMonth.monthIndex].monthShort;
 
@@ -38,13 +38,13 @@ export const Calendar = memo((props: CalendarProps) => {
             monthsImagesData.find((item) => item.month === currentMonth)?.image
           }
         />
-        {/* <button onClick={handlePrevMonth} className={classNames(cls.button, cls.prev)} /> */}
+        <button onClick={() => functions.onClickArrow('left')} className={classNames(cls.button, cls.prev)} />
         <Text
           className={cls.title}
           title={`${currentMonth} ${state.selectedYear}`}
           bold
         />
-        {/* <button onClick={handleNextMonth} className={cls.button} /> */}
+        <button onClick={() => functions.onClickArrow('right')} className={cls.button} />
       </section>
       <section>
         <div className={cls.weekNames}>
@@ -62,15 +62,19 @@ export const Calendar = memo((props: CalendarProps) => {
             const isToday = checkIsToday(calendarDay.date);
             const isSelectedDay = checkDateIsEqual(calendarDay.date, state.selectedDate.date)
             const isAdditionalDay = calendarDay.monthIndex !== state.selectedMonth.monthIndex
+            const isDayOff = Number(state.daysOff[getDayNumberInYear(calendarDay.date) - 1]) === 1;
+
             const additionalClasses = {
               [cls.today]: isToday,
               [cls.selected]: isSelectedDay,
-              [cls.additional]: isAdditionalDay
+              [cls.additional]: isAdditionalDay,
+              [cls.isDayOff]: isDayOff
             }
             return (
               <div
                 key={`${calendarDay.dayNumber} - ${calendarDay.monthIndex}`}
                 onClick={() => {
+                  functions.setSelectedDate(calendarDay)
                   selectDate(calendarDay.date)
                 }}
                 className={classNames(cls.day, additionalClasses)}

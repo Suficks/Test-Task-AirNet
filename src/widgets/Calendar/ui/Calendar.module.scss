@@ -44,7 +44,7 @@
   justify-items: center;
 }
 
-.weekDay{
+.weekDay {
   padding: 24px 0;
 }
 
@@ -61,7 +61,7 @@
 
   border: 1px solid #D9D9D9;
   
-  transition: 0.3s ease;
+  transition: 0.2s ease;
 
   cursor: pointer;
   font-weight: 700;
@@ -75,14 +75,18 @@
   color: #D9D9D9;
 }
 
+.selected {
+  background-color: #ffa5a5;
+}
+
 .today {
   background-color: #c1ffc6;
-
+  z-index: 2;
   &:hover {
     background-color: #c1ffc6;
   }
 }
 
-.selected {
-  background-color: red;
+.isDayOff {
+  color: red;
 }
