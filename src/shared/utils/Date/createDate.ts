@@ -5,7 +5,23 @@ interface CreateDateParams {
   date?: Date;
 }
 
-export const createDate = (params?: CreateDateParams) => {
+export interface CalendarDay {
+  date: Date
+  dayNumber: number
+  day: string
+  dayNumberInWeek: number
+  dayShort: string
+  year: number
+  yearShort: string
+  month: string
+  monthShort: string
+  monthNumber: number
+  monthIndex: number
+  timestamp: number
+  week: number
+}
+
+export const createDate = (params?: CreateDateParams): CalendarDay => {
   const locale = params?.locale ?? 'en-us';
   const date = params?.date ?? new Date();
 

@@ -1,10 +1,11 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import classNames from 'classnames';
 
 import { Text } from '@/shared/ui/Text/Text';
 import { useCalendar } from '../hooks/useCalendar';
 import { monthsImagesData } from '@/shared/const/MonthsImagesData';
-import { checkDateIsEqual, checkIsToday, getDayNumberInYear } from '@/shared/utils/Date';
+import { CalendarDay, checkDateIsEqual, checkIsToday, getDayNumberInYear } from '@/shared/utils/Date';
+import { Tasks } from '@/widgets/Tasks/ui/Tasks';
 
 import cls from './Calendar.module.scss';
 
@@ -26,8 +27,23 @@ export const Calendar = memo((props: CalendarProps) => {
   } = props;
 
   const { state, functions } = useCalendar({ firstWeekDay, locale, selectedDate });
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const currentMonth =
     state.monthsNames[state.selectedMonth.monthIndex].monthShort;
+
+  const additionalClasses = (calendarDay: CalendarDay) => {
+    const isToday = checkIsToday(calendarDay.date);
+    const isSelectedDay = checkDateIsEqual(calendarDay.date, state.selectedDate.date)
+    const isAdditionalDay = calendarDay.monthIndex !== state.selectedMonth.monthIndex
+    const isDayOff = Number(state.daysOff[getDayNumberInYear(calendarDay.date) - 1]) === 1;
+
+    return {
+      [cls.today]: isToday,
+      [cls.selected]: isSelectedDay,
+      [cls.additional]: isAdditionalDay,
+      [cls.isDayOff]: isDayOff
+    }
+  }
 
   return (
     <>
@@ -59,17 +75,6 @@ export const Calendar = memo((props: CalendarProps) => {
         </div>
         <div className={cls.calendar}>
           {state.calendarDays.map((calendarDay) => {
-            const isToday = checkIsToday(calendarDay.date);
-            const isSelectedDay = checkDateIsEqual(calendarDay.date, state.selectedDate.date)
-            const isAdditionalDay = calendarDay.monthIndex !== state.selectedMonth.monthIndex
-            const isDayOff = Number(state.daysOff[getDayNumberInYear(calendarDay.date) - 1]) === 1;
-
-            const additionalClasses = {
-              [cls.today]: isToday,
-              [cls.selected]: isSelectedDay,
-              [cls.additional]: isAdditionalDay,
-              [cls.isDayOff]: isDayOff
-            }
             return (
               <div
                 key={`${calendarDay.dayNumber} - ${calendarDay.monthIndex}`}
@@ -77,9 +82,11 @@ export const Calendar = memo((props: CalendarProps) => {
                   functions.setSelectedDate(calendarDay)
                   selectDate(calendarDay.date)
                 }}
-                className={classNames(cls.day, additionalClasses)}
+                className={classNames(cls.day, additionalClasses(calendarDay))}
               >
                 {calendarDay.dayNumber}
+                <Tasks date={calendarDay.date} />
+                {/* {<button className={openTasks} onClick={ } />} */}
               </div>
             )
           }

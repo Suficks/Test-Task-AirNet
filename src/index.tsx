@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { App } from './app/App';
+import { TasksProvider } from './app/providers/context/tasksContext';
 
 const container = document.getElementById('root');
 
@@ -13,6 +14,8 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <App />
+    <TasksProvider>
+      <App />
+    </TasksProvider>
   </React.StrictMode>,
 );
