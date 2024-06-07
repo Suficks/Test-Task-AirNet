@@ -64,7 +64,10 @@ export const Modal = memo((props: ModalProps) => {
 
   return (
     <>
-      <div className={classNames(cls.Modal, className, { [cls.open]: isOpen })}>
+      <div
+        className={classNames(cls.Modal, className, { [cls.open]: isOpen })}
+        data-testid='modal'
+      >
         <button className={cls.close_btn} onClick={onModalClose}>
           {<IoClose className={cls.icon} />}
         </button>

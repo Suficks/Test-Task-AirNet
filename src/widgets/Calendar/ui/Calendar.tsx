@@ -109,6 +109,7 @@ export const Calendar = memo((props: CalendarProps) => {
                   selectDate(calendarDay.date);
                 }}
                 className={classNames(cls.day, additionalClasses(calendarDay))}
+                data-testid='day'
               >
                 {calendarDay.dayNumber}
                 <Tasks date={calendarDay.date} small className={cls.tasks} />
