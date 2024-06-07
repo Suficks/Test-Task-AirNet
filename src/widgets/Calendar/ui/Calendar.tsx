@@ -111,7 +111,7 @@ export const Calendar = memo((props: CalendarProps) => {
                 className={classNames(cls.day, additionalClasses(calendarDay))}
               >
                 {calendarDay.dayNumber}
-                <Tasks date={calendarDay.date} small />
+                <Tasks date={calendarDay.date} small className={cls.tasks} />
               </div>
             );
           })}

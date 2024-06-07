@@ -7,6 +7,6 @@ export const getItemFromLocalStorage = (key: string) => {
   }
 };
 
-export const setItemToLocalStorage = (key: string, value: Task[]) => {
+export const setItemToLocalStorage = <T>(key: string, value: T) => {
   localStorage.setItem(key, JSON.stringify(value));
 };

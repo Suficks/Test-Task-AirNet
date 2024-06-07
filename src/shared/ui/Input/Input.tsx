@@ -17,7 +17,7 @@ export const Input = memo((props: InputProps) => {
   const { className, onAccept, onCancel, onChange, value } = props;
 
   return (
-    <form className={classNames(cls.Input, className)}>
+    <form action="#" className={classNames(cls.Input, className)}>
       <input className={cls.input} value={value} onChange={onChange} />
       <button onClick={onAccept}>
         {<FaCheck className={classNames(cls.accept)} />}

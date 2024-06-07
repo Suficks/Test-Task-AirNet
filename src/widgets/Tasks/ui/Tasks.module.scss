@@ -13,7 +13,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 85%;
+  max-width: 90%;
+  width: 100%;
 
   cursor: pointer;
 }
@@ -43,7 +44,7 @@
 
 .buttons_wrapper {
   margin-left: auto;
-  text-align: end;
+  display: flex;
 }
 
 .icon {
@@ -64,5 +65,21 @@
   fill: rgb(255, 97, 97);
   &:hover {
     fill: red
+  }
+}
+
+.task_icon {
+  display: none;
+  fill: #666;
+}
+
+@media screen and (width <= 580px) {
+  .small {
+      display: none;
+    
+  }
+
+  .task_icon {
+    display: block;
   }
 }
