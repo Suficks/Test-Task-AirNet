@@ -1,16 +1,16 @@
-import { getItemFromLocalStorage } from "@/shared/utils/LocalStorage/localStorage";
-import { ReactNode, createContext, useContext, useState } from "react";
+import { getItemFromLocalStorage } from '@/shared/utils/LocalStorage/localStorage';
+import { ReactNode, createContext, useContext, useState } from 'react';
 
 export type Task = {
   /** Идентификатор задачи */
-  id: string
+  id: string;
   /** Текст задачи */
-  text: string
+  text: string;
   /** Прогресс по  задачи: выполнена или нет */
-  progress: 'complete' | 'incomplete'
+  progress: 'complete' | 'incomplete';
   /** День на который назначена задача */
-  date: Date
-}
+  date: Date;
+};
 
 interface TasksContextType {
   tasks: Task[];
@@ -19,13 +19,15 @@ interface TasksContextType {
 
 const TasksContext = createContext<TasksContextType>({
   tasks: [],
-  setTask: () => { },
+  setTask: () => {},
 });
 
 export const useTasks = () => useContext(TasksContext);
 
 export const TasksProvider = ({ children }: { children: ReactNode }) => {
-  const [tasks, setTask] = useState<Task[]>(getItemFromLocalStorage('tasks') || []);
+  const [tasks, setTask] = useState<Task[]>(
+    getItemFromLocalStorage('tasks') || [],
+  );
 
   return (
     <TasksContext.Provider value={{ tasks, setTask }}>

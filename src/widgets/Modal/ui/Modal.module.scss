@@ -66,39 +66,3 @@
   height: 40px;
   fill: #666;
 }
-
-.input_wrap {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 5px;
-}
-
-.input {
-  padding: 8px 15px;
-  font-size: 20px;
-  border: none;
-  border-bottom: 3px solid grey;
-  width: 85%;
-  background-color: white;
-  border-radius: 5px;
-
-  &:focus {
-    box-shadow:  0 5px 5px -5px rgba(0, 0, 0, 0.5);
-  }
-}
-
-.cancel,
-.accept {
-  width: 25px;
-  height: 25px;
-}
-
-.accept {
-  fill: green;
-}
-
-.cancel {
-  fill: red;
-}

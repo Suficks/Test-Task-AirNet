@@ -4,7 +4,12 @@ import classNames from 'classnames';
 import { Text } from '@/shared/ui/Text/Text';
 import { useCalendar } from '../hooks/useCalendar';
 import { monthsImagesData } from '@/shared/const/MonthsImagesData';
-import { CalendarDay, checkDateIsEqual, checkIsToday, getDayNumberInYear } from '@/shared/utils/Date';
+import {
+  CalendarDay,
+  checkDateIsEqual,
+  checkIsToday,
+  getDayNumberInYear,
+} from '@/shared/utils/Date';
 import { Tasks } from '@/widgets/Tasks/ui/Tasks';
 import { Modal } from '@/widgets/Modal';
 
@@ -27,28 +32,37 @@ export const Calendar = memo((props: CalendarProps) => {
     firstWeekDay = 2,
   } = props;
 
-  const { state, functions } = useCalendar({ firstWeekDay, locale, selectedDate });
+  const { state, functions } = useCalendar({
+    firstWeekDay,
+    locale,
+    selectedDate,
+  });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const currentMonth =
     state.monthsNames[state.selectedMonth.monthIndex].monthShort;
 
   const additionalClasses = (calendarDay: CalendarDay) => {
     const isToday = checkIsToday(calendarDay.date);
-    const isSelectedDay = checkDateIsEqual(calendarDay.date, state.selectedDate.date)
-    const isAdditionalDay = calendarDay.monthIndex !== state.selectedMonth.monthIndex
-    const isDayOff = Number(state.daysOff[getDayNumberInYear(calendarDay.date) - 1]) === 1;
+    const isSelectedDay = checkDateIsEqual(
+      calendarDay.date,
+      state.selectedDate.date,
+    );
+    const isAdditionalDay =
+      calendarDay.monthIndex !== state.selectedMonth.monthIndex;
+    const isDayOff =
+      Number(state.daysOff[getDayNumberInYear(calendarDay.date) - 1]) === 1;
 
     return {
       [cls.today]: isToday,
       [cls.selected]: isSelectedDay,
       [cls.additional]: isAdditionalDay,
-      [cls.isDayOff]: isDayOff
-    }
-  }
+      [cls.isDayOff]: isDayOff,
+    };
+  };
 
   const onModalOpen = () => {
-    setIsModalOpen(true)
-  }
+    setIsModalOpen(true);
+  };
 
   return (
     <>
@@ -59,13 +73,19 @@ export const Calendar = memo((props: CalendarProps) => {
             monthsImagesData.find((item) => item.month === currentMonth)?.image
           }
         />
-        <button onClick={() => functions.onClickArrow('left')} className={classNames(cls.button, cls.prev)} />
+        <button
+          onClick={() => functions.onClickArrow('left')}
+          className={classNames(cls.button, cls.prev)}
+        />
         <Text
           className={cls.title}
           title={`${currentMonth} ${state.selectedYear}`}
           bold
         />
-        <button onClick={() => functions.onClickArrow('right')} className={cls.button} />
+        <button
+          onClick={() => functions.onClickArrow('right')}
+          className={cls.button}
+        />
       </section>
       <section>
         <div className={cls.weekNames}>
@@ -84,18 +104,17 @@ export const Calendar = memo((props: CalendarProps) => {
               <div
                 key={`${calendarDay.dayNumber} - ${calendarDay.monthIndex}`}
                 onClick={() => {
-                  onModalOpen()
-                  functions.setSelectedDate(calendarDay)
-                  selectDate(calendarDay.date)
+                  onModalOpen();
+                  functions.setSelectedDate(calendarDay);
+                  selectDate(calendarDay.date);
                 }}
                 className={classNames(cls.day, additionalClasses(calendarDay))}
               >
                 {calendarDay.dayNumber}
                 <Tasks date={calendarDay.date} small />
               </div>
-            )
-          }
-          )}
+            );
+          })}
         </div>
         <Modal
           isOpen={isModalOpen}

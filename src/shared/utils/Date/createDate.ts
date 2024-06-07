@@ -6,19 +6,19 @@ interface CreateDateParams {
 }
 
 export interface CalendarDay {
-  date: Date
-  dayNumber: number
-  day: string
-  dayNumberInWeek: number
-  dayShort: string
-  year: number
-  yearShort: string
-  month: string
-  monthShort: string
-  monthNumber: number
-  monthIndex: number
-  timestamp: number
-  week: number
+  date: Date;
+  dayNumber: number;
+  day: string;
+  dayNumberInWeek: number;
+  dayShort: string;
+  year: number;
+  yearShort: string;
+  month: string;
+  monthShort: string;
+  monthNumber: number;
+  monthIndex: number;
+  timestamp: number;
+  week: number;
 }
 
 export const createDate = (params?: CreateDateParams): CalendarDay => {

@@ -1,9 +1,7 @@
 import { memo, useCallback, useState } from 'react';
 import classNames from 'classnames';
-import { LuPlus } from "react-icons/lu";
-import { IoClose } from "react-icons/io5";
-import { FaCheck } from "react-icons/fa";
-import { AiFillCloseCircle } from "react-icons/ai";
+import { LuPlus } from 'react-icons/lu';
+import { IoClose } from 'react-icons/io5';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Tasks } from '@/widgets/Tasks';
@@ -11,12 +9,13 @@ import { Text } from '@/shared/ui/Text/Text';
 import { useTasks } from '@/app/providers/context/tasksContext';
 
 import cls from './Modal.module.scss';
+import { Input } from '@/shared/ui/Input/Input';
 
 interface ModalProps {
   className?: string;
-  isOpen: boolean,
-  date: Date
-  onClose?: (value: boolean) => void
+  isOpen: boolean;
+  date: Date;
+  onClose?: (value: boolean) => void;
 }
 
 export const Modal = memo((props: ModalProps) => {
@@ -26,36 +25,42 @@ export const Modal = memo((props: ModalProps) => {
   const { setTask } = useTasks();
 
   const onModalClose = useCallback(() => {
-    onClose?.(false)
-    setIsAddingTask(false)
-  }, [])
+    onClose?.(false);
+    setIsAddingTask(false);
+  }, []);
 
   const onOpenInput = useCallback(() => {
-    setIsAddingTask(true)
-  }, [])
+    setIsAddingTask(true);
+  }, []);
 
-  const onSetInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  }
+  const onSetInputValue = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(e.target.value);
+    },
+    [],
+  );
 
   const onAddNewTask = useCallback(() => {
-    setIsAddingTask(false)
-    setInputValue('')
+    setIsAddingTask(false);
+    setInputValue('');
 
     if (inputValue) {
-      setTask(prev => [...prev, {
-        text: inputValue,
-        id: uuidv4(),
-        date,
-        progress: 'incomplete'
-      }])
+      setTask((prev) => [
+        ...prev,
+        {
+          text: inputValue,
+          id: uuidv4(),
+          date,
+          progress: 'incomplete',
+        },
+      ]);
     }
-  }, [inputValue])
+  }, [inputValue]);
 
   const onCancelAddTask = useCallback(() => {
-    setIsAddingTask(false)
-    setInputValue('')
-  }, [])
+    setIsAddingTask(false);
+    setInputValue('');
+  }, []);
 
   return (
     <>
@@ -63,21 +68,25 @@ export const Modal = memo((props: ModalProps) => {
         <button className={cls.close_btn} onClick={onModalClose}>
           {<IoClose className={cls.icon} />}
         </button>
-        <Text title='Current Tasks' />
+        <Text title="Current Tasks" />
         <button className={cls.new_task} onClick={onOpenInput}>
           {<LuPlus className={cls.icon} />}
-          <Text text='Add New Task' size='s' />
+          <Text text="Add New Task" size="s" />
         </button>
         {isAddingTask && (
-          <div className={cls.input_wrap}>
-            <input className={cls.input} value={inputValue} onChange={onSetInputValue} />
-            <button onClick={onAddNewTask}>{<FaCheck className={classNames(cls.accept)} />}</button>
-            <button onClick={onCancelAddTask}>{<AiFillCloseCircle className={classNames(cls.cancel)} />}</button>
-          </div>
+          <Input
+            onAccept={onAddNewTask}
+            onCancel={onCancelAddTask}
+            onChange={onSetInputValue}
+            value={inputValue}
+          />
         )}
         <Tasks date={date} withInput />
-      </div >
-      <div className={classNames(cls.overlay, { [cls.overlay_active]: isOpen })} onClick={onModalClose} />
+      </div>
+      <div
+        className={classNames(cls.overlay, { [cls.overlay_active]: isOpen })}
+        onClick={onModalClose}
+      />
     </>
-  )
-})
+  );
+});

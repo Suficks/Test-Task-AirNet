@@ -12,7 +12,7 @@ export const App = () => {
       <Calendar
         selectedDate={selectedDate}
         selectDate={(date) => setSelectedDay(date)}
-        locale='en-us'
+        locale="en-us"
       />
     </main>
   );

@@ -1,7 +1,7 @@
-import { Task } from "@/app/providers/context/tasksContext";
+import { Task } from '@/app/providers/context/tasksContext';
 
 export const getItemFromLocalStorage = (key: string) => {
-  const itemFromLS = localStorage.getItem(key)
+  const itemFromLS = localStorage.getItem(key);
   if (itemFromLS) {
     return JSON.parse(itemFromLS);
   }

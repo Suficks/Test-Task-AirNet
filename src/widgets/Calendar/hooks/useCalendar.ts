@@ -37,7 +37,7 @@ export const useCalendar = ({
     };
 
     fetchDaysOff();
-  }, [selectedYear])
+  }, [selectedYear]);
 
   const monthsNames = useMemo(() => getMonthNames(locale), []);
   const weekDaysNames = useMemo(
@@ -105,21 +105,28 @@ export const useCalendar = ({
   }, [selectedMonth.year, selectedMonth.monthIndex, selectedYear]);
 
   const onClickArrow = (direction: 'right' | 'left') => {
-    const monthIndex = direction === 'left' ? selectedMonth.monthIndex - 1 : selectedMonth.monthIndex + 1
+    const monthIndex =
+      direction === 'left'
+        ? selectedMonth.monthIndex - 1
+        : selectedMonth.monthIndex + 1;
 
     if (monthIndex === -1) {
-      const year = selectedYear - 1
-      setSelectedYear(year)
-      return setSelectedMonth(createMonth({ date: new Date(year, 11), locale }))
+      const year = selectedYear - 1;
+      setSelectedYear(year);
+      return setSelectedMonth(
+        createMonth({ date: new Date(year, 11), locale }),
+      );
     }
     if (monthIndex === MONTHS_IN_YEAR) {
-      const year = selectedYear + 1
-      setSelectedYear(year)
-      return setSelectedMonth(createMonth({ date: new Date(year, 0), locale }))
+      const year = selectedYear + 1;
+      setSelectedYear(year);
+      return setSelectedMonth(createMonth({ date: new Date(year, 0), locale }));
     }
 
-    return setSelectedMonth(createMonth({ date: new Date(selectedYear, monthIndex), locale }))
-  }
+    return setSelectedMonth(
+      createMonth({ date: new Date(selectedYear, monthIndex), locale }),
+    );
+  };
 
   return {
     state: {
@@ -133,7 +140,7 @@ export const useCalendar = ({
     },
     functions: {
       setSelectedDate,
-      onClickArrow
-    }
+      onClickArrow,
+    },
   };
 };
