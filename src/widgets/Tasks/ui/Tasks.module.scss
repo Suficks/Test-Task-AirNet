@@ -7,3 +7,26 @@
   font-weight: 400;
   color: #666;
 }
+
+.list {
+  max-width: 100%;
+}
+
+.checked {
+  text-decoration: line-through;
+}
+
+.text {
+  word-break: break-all;
+}
+
+
+.small {
+  margin-bottom: 0;
+
+ .text {
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+ }
+}

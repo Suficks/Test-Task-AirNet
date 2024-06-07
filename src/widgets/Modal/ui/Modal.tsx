@@ -23,10 +23,11 @@ export const Modal = memo((props: ModalProps) => {
   const { className, isOpen, onClose, date } = props;
   const [isAddingTask, setIsAddingTask] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const { tasks, setTask } = useTasks();
+  const { setTask } = useTasks();
 
   const onModalClose = useCallback(() => {
     onClose?.(false)
+    setIsAddingTask(false)
   }, [])
 
   const onOpenInput = useCallback(() => {

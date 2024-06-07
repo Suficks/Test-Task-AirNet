@@ -3,17 +3,19 @@ import classNames from 'classnames';
 
 import cls from './Text.module.scss';
 
-export type TextSize = 's' | 'm';
+export type TextSize = 'xs' | 's' | 'm';
 export type TextStyle = 'normal' | 'italic';
 
-type HeaderTagType = 'h1' | 'h2';
+type HeaderTagType = 'h1' | 'h2' | 'h3';
 
 const mapSizeToClass: Record<TextSize, string> = {
+  xs: cls.size_xs,
   s: cls.size_s,
   m: cls.size_m,
 };
 
 const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
+  xs: 'h3',
   s: 'h2',
   m: 'h1',
 };
