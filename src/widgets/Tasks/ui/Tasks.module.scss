@@ -2,14 +2,18 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  cursor: pointer;
+
   margin-bottom: 15px;
+
+  cursor: pointer;
   font-weight: 400;
   color: #666;
 }
 
 .list {
   max-width: 100%;
+  width: 100%;
+
 }
 
 .checked {
@@ -20,7 +24,6 @@
   word-break: break-all;
 }
 
-
 .small {
   margin-bottom: 0;
 
@@ -29,4 +32,30 @@
    overflow: hidden;
    text-overflow: ellipsis;
  }
+}
+
+.buttons_wrapper {
+  margin-left: auto
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+
+  transition: 0.3s ease;
+}
+
+.edit {
+  fill: rgb(96, 199, 96);
+  margin-right: 5px;
+  &:hover {
+    fill: green
+  }
+}
+
+.delete {
+  fill: rgb(255, 97, 97);
+  &:hover {
+    fill: red
+  }
 }
